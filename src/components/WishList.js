@@ -58,7 +58,7 @@ export default function WishList() {
                                         style={{backgroundColor: 'transparent'}}>
                                         <li className="breadcrumb-li"><Link to="/" style={{color: '#0b0b0b'}}>Home</Link></li>
                                         <li className="breadcrumb-li breadcrumb-sep">||</li>
-                                        <li className="breadcrumb-li" style={{color: '#721b65'}}>WishList</li>
+                                        <li className="breadcrumb-li" style={{color: '#721b65'}}>hello world</li>
                                     </ul>
                                 </nav>
                             </div>
