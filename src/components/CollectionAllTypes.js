@@ -45,7 +45,7 @@ return (
                         <div className="products">
                             <button onClick='product_All' className="active">ALL</button>
                             <button onClick="getNew()" id="btn-new">NEW</button>
-                            <button onClick="getBestSellers()" id="btn-bestsell">BEST SELLERS</button>
+                            <button onClick="getBestSellers()" id="btn-bestsell">BEST selllers SELLERS</button>
                             <button onClick="getFeatured()" id="btn-feature">FEATURED</button>
                             <button onClick="getOnSell()" id="btn-sell">SELL</button>
                         </div>
