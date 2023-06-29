@@ -35,7 +35,7 @@ export default function AboutArea() {
                                 <img
                                     src="https://htmldemo.net/tuime/tuime/assets/img/about/1.webp"
                                     className="w-100" width="70%" height="70%"
-                                    alt="Image-HasTech"/>
+                                    alt="background"/>
                             </div>
                         </div>
                     </div>

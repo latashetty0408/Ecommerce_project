@@ -11,7 +11,7 @@ export default function DealOffer() {
                             <img
                                 src="https://htmldemo.net/tuime/tuime/assets/img/photos/divider1.webp"
                                 className="w-100" width="230"
-                                height="300" alt="Image-HasTech"/>
+                                height="300" alt="background"/>
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-12">
@@ -31,7 +31,7 @@ export default function DealOffer() {
                             <img
                                 src="https://htmldemo.net/tuime/tuime/assets/img/photos/divider2.webp"
                                 className="w-100" width="230"
-                                height="300" alt="Image-HasTech"/>
+                                height="300" alt="background"/>
                         </div>
                     </div>
                 </div>

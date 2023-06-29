@@ -141,15 +141,17 @@ export default function ProductCollection() {
     const [products , setProducts] = useState(product_New)
     // console.log(useParams());
     const {category_id } = useParams();
-    // eslint-disable-next-line
+
     useEffect(() => {
         getProduct();
+        // eslint-disable-next-line
     }, [])
     const getProduct = ()=>{
         const result = product_New.filter((item) => item.category_id === parseInt(+category_id));
         console.log(result);
         setProducts(result);
         // console.log(products);
+        
     }
     return (
     <>
