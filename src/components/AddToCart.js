@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import DataTable from 'react-data-table-component';
 import { Link } from 'react-router-dom'
 
 export default function AddToCart() {
@@ -42,37 +43,110 @@ export default function AddToCart() {
         Quantity: 1,
         Prize: 28,
         Subtotal:28
+    },
+    {
+        id: 5,
+        no: 5,
+        Product_name:'Pedigree Meat & Rice Adult Dry Dog Food',
+        category_name: 'Dog',
+        Photo: 'https://cdn.shopify.com/s/files/1/0086/0795/7054/products/Pedigree-Adult-Dry-Dog-Food-Meat-Rice-10kg-FOP.jpg?v=1676366160&width=600',
+        Quantity: 1,
+        Prize: 30,
+        Subtotal:30
+    },
+    {
+        id: 6,
+        no: 6,
+        Product_name:'Pellet Feed for Koi Fish',
+        category_name:'Gold Fish',
+        Photo: 'https://m.media-amazon.com/images/I/811et3fOKDL._SY355_.jpg',
+        Quantity: 1,
+        Prize: 28,
+        Subtotal:28
+    },
+    {
+        id: 7,
+        no: 7,
+        Product_name:'Pedigree Meat & Rice Adult Dry Dog Food',
+        category_name: 'Dog',
+        Photo: 'https://cdn.shopify.com/s/files/1/0086/0795/7054/products/Pedigree-Adult-Dry-Dog-Food-Meat-Rice-10kg-FOP.jpg?v=1676366160&width=600',
+        Quantity: 1,
+        Prize: 30,
+        Subtotal:30
+    },
+    {
+        id: 8,
+        no: 8,
+        Product_name:'Pellet Feed for Koi Fish',
+        category_name:'Gold Fish',
+        Photo: 'https://m.media-amazon.com/images/I/811et3fOKDL._SY355_.jpg',
+        Quantity: 1,
+        Prize: 28,
+        Subtotal:28
     }
 ];
-const [tableData, setTableData] = useState(cart);
-const handleQuantityIncrement = (index) => {
-    const updatedTableData = [...tableData];
-    updatedTableData[index].Quantity += 1;
-    updatedTableData[index].Subtotal =  updatedTableData[index].Quantity * updatedTableData[index].Prize ;
 
-    // let a = quantity * prize;
-    console.log(updatedTableData)
-    setTableData(updatedTableData);
-}
-const handleQuantityDecrement = (index) => {
-    const updatedTableData = [...tableData];
-    if (updatedTableData[index].Quantity > 0) {
-        updatedTableData[index].Quantity -= 1;
-        updatedTableData[index].Subtotal =  updatedTableData[index].Quantity * updatedTableData[index].Prize ;
-
-        setTableData(updatedTableData);
+const columns = [
+    {
+        name: 'No',
+        selector: row => row.no,
+    },
+    {
+        name: 'Photo',
+        selector: row => <img src={row.Photo} height="75" width="75" alt='cartImg'/>,
+    },
+    {
+        name: 'Category',
+        selector: row => row.category_name,
+    },
+    {
+        name: 'Product name',
+        selector: row => row.Product_name,
+    },
+    {
+        name: 'Quantity',
+        selector: row => row.Quantity,
+    },
+    {
+        name: 'Prize',
+        selector: row => row.Prize,
+    },
+    {
+        name: 'Subtotal',
+        selector: row => row.Subtotal,
     }
+    
+];
+const [search, setSearch] = useState('');
+// const [tableData, setTableData] = useState(cart);
+// const handleQuantityIncrement = (index) => {
+//     const updatedTableData = [...tableData];
+//     updatedTableData[index].Quantity += 1;
+//     updatedTableData[index].Subtotal =  updatedTableData[index].Quantity * updatedTableData[index].Prize ;
 
-}
-const handleQuantityChange = (index, value) => {
-    const updatedTableData = [...tableData];
-    updatedTableData[index].Quantity = value;
-    setTableData(updatedTableData);
-}
-const removeItemById = (id) => {
-    const updatedItems = tableData.filter((item) => item.id !== id);
-    setTableData(updatedItems);
-    };
+//     // let a = quantity * prize;
+//     console.log(updatedTableData)
+//     setTableData(updatedTableData);
+// }
+// const handleQuantityDecrement = (index) => {
+//     const updatedTableData = [...tableData];
+//     if (updatedTableData[index].Quantity > 0) {
+//         updatedTableData[index].Quantity -= 1;
+//         updatedTableData[index].Subtotal =  updatedTableData[index].Quantity * updatedTableData[index].Prize ;
+
+//         setTableData(updatedTableData);
+//     }
+
+// }
+// const handleQuantityChange = (index, value) => {
+//     const updatedTableData = [...tableData];
+//     updatedTableData[index].Quantity = value;
+//     setTableData(updatedTableData);
+// }
+// const removeItemById = (id) => {
+//     const updatedItems = tableData.filter((item) => item.id !== id);
+//     setTableData(updatedItems);
+//     };
 return (
     <div>
         <main>
@@ -101,7 +175,20 @@ return (
                 <div className="container">
                     <div className="row">
                         <div className="col-12">
-                            <table className="table table-bordered" id="myTable">
+                            <DataTable title={AddToCart} 
+                            columns={columns} 
+                            data={cart} 
+                            pagination 
+                            fixedHeader 
+                            fixedheaderscrollheight='450px' 
+                            selectableRows
+                            selectableRowsHighlight 
+                            highlightOnHover
+                            subHeader
+                            subHeaderComponent = {
+                                <input type='text' placeholder='Search Here' className='w-25 form-control' value={search} onChange={() => setSearch(e.target.value)}/>
+                            } />
+                            {/* <table className="table table-bordered" id="myTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -138,7 +225,7 @@ return (
                                         </tr>
                                     })}
                                 </tbody>
-                            </table>
+                            </table> */}
                         </div>
                     </div>
                 </div>
