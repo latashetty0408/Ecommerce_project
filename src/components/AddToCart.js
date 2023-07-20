@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom'
+import HeadDetail from './HeadDetail';
 
 export default function AddToCart() {
     let cart = [
@@ -43,54 +43,10 @@ export default function AddToCart() {
         Quantity: 1,
         Prize: 28,
         Subtotal:28
-    },
-    {
-        id: 5,
-        no: 5,
-        Product_name:'Pedigree Meat & Rice Adult Dry Dog Food',
-        category_name: 'Dog',
-        Photo: 'https://cdn.shopify.com/s/files/1/0086/0795/7054/products/Pedigree-Adult-Dry-Dog-Food-Meat-Rice-10kg-FOP.jpg?v=1676366160&width=600',
-        Quantity: 1,
-        Prize: 30,
-        Subtotal:30
-    },
-    {
-        id: 6,
-        no: 6,
-        Product_name:'Pellet Feed for Koi Fish',
-        category_name:'Gold Fish',
-        Photo: 'https://m.media-amazon.com/images/I/811et3fOKDL._SY355_.jpg',
-        Quantity: 1,
-        Prize: 28,
-        Subtotal:28
-    },
-    {
-        id: 7,
-        no: 7,
-        Product_name:'Pedigree Meat & Rice Adult Dry Dog Food',
-        category_name: 'Dog',
-        Photo: 'https://cdn.shopify.com/s/files/1/0086/0795/7054/products/Pedigree-Adult-Dry-Dog-Food-Meat-Rice-10kg-FOP.jpg?v=1676366160&width=600',
-        Quantity: 1,
-        Prize: 30,
-        Subtotal:30
-    },
-    {
-        id: 8,
-        no: 8,
-        Product_name:'Pellet Feed for Koi Fish',
-        category_name:'Gold Fish',
-        Photo: 'https://m.media-amazon.com/images/I/811et3fOKDL._SY355_.jpg',
-        Quantity: 1,
-        Prize: 28,
-        Subtotal:28
     }
 ];
 
 const columns = [
-    {
-        name: 'No',
-        selector: row => row.no,
-    },
     {
         name: 'Photo',
         selector: row => <img src={row.Photo} height="75" width="75" alt='cartImg'/>,
@@ -98,6 +54,7 @@ const columns = [
     {
         name: 'Category',
         selector: row => row.category_name,
+        sortable: true
     },
     {
         name: 'Product name',
@@ -114,11 +71,18 @@ const columns = [
     {
         name: 'Subtotal',
         selector: row => row.Subtotal,
+    },
+    {
+        name: 'Delete',
+        selector: row => <div className="Delete" id={`Delete_${row.no}`} >
+                            <button type='button' className='btn' onClick={() => removeItemById(row.id)}><i className="remove fa fa-remove"></i></button>
+                        </div>,
     }
+    
     
 ];
 const [search, setSearch] = useState('');
-// const [tableData, setTableData] = useState(cart);
+const [tableData, setTableData] = useState(cart);
 // const handleQuantityIncrement = (index) => {
 //     const updatedTableData = [...tableData];
 //     updatedTableData[index].Quantity += 1;
@@ -143,34 +107,16 @@ const [search, setSearch] = useState('');
 //     updatedTableData[index].Quantity = value;
 //     setTableData(updatedTableData);
 // }
-// const removeItemById = (id) => {
-//     const updatedItems = tableData.filter((item) => item.id !== id);
-//     setTableData(updatedItems);
-//     };
+const removeItemById = (id) => {
+    const updatedItems = tableData.filter((item) => item.id !== id);
+    setTableData(updatedItems);
+    console.log(updatedItems)
+
+    };
 return (
     <div>
         <main>
-            <div className="page-header-area"
-                style={{backgroundImage: 'url(https://htmldemo.net/tuime/tuime/assets/img/photos/bg1.webp)'}}>
-                <div className="container pt-0 pb-0">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="page-header-content">
-                                <h2 className="title" style={{fontSize: '48px', margin: '0 0 5px 14px'}}>Cart</h2>
-                                <nav className="breadcrumb-area">
-                                    <ul className="breadcrumb"
-                                        style={{backgroundColor: 'transparent'}}>
-                                        <li className="breadcrumb-li"><Link to="/" style={{color: '#0b0b0b'}}>Home</Link></li>
-                                        <li className="breadcrumb-li breadcrumb-sep">||</li>
-                                        <li className="breadcrumb-li" style={{color: '#721b65'}}>Cart</li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <HeadDetail subtitle='Cart' title='Cart'/>
             <section className="add_to_cart">
                 <div className="container">
                     <div className="row">
@@ -186,8 +132,9 @@ return (
                             highlightOnHover
                             subHeader
                             subHeaderComponent = {
-                                <input type='text' placeholder='Search Here' className='w-25 form-control' value={search} onChange={() => setSearch(e.target.value)}/>
-                            } />
+                                <input type='text' placeholder='Search Here' className='w-25 form-control' value={search} onChange={(e) => setSearch(e.target.value)}/>
+                            } 
+                            />
                             {/* <table className="table table-bordered" id="myTable">
                                 <thead>
                                     <tr>
