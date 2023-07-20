@@ -8,6 +8,7 @@ import ProductCollection from "./components/ProductCollection";
 import AddToCart from "./components/AddToCart";
 import WishList from "./components/WishList";
 import AboutUs from "./components/AboutUs";
+import IncDecNum from "./components/IncDecNum";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path='/add_to_cart' component={AddToCart} />
           <Route exact path='/shop_wishlist' component={WishList} />
           <Route exact path='/about' component={AboutUs} />
+          <Route exact path='/IncDec' component={IncDecNum} />
         </Switch>
       </Router>
     </>
